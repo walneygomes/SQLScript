@@ -1,0 +1,30 @@
+create table situacao(
+	 Id_Situacao integer  ,
+	 Sistuacao varchar(10),
+	 CONSTRAINT constraint_situacao PRIMARY KEY(Id_Situacao));
+\\ENTIDADE FORTE 
+  create table marca(
+          Id_marca integer,
+           Marca varchar(128),
+          CONSTRAINT constraint_marca PRIMARY KEY(Id_marca));
+  \\ENTIDADE FRACA
+create table carro(
+            Id_Carro integer,
+	Id_Socio int,
+	  Id_Marca int,
+	  modelo varchar(128),
+	  cor varchar(64),
+	  placa varchar(10) not null,
+	  
+	CONSTRAINT constraint_carro PRIMARY KEY(Id_Carro),
+              constraint carro_socio foreign key (Id_Socio) references socio(Id_Socio),
+              constraint carro_marca foreign key (Id_Marca) references marca(Id_Marca)); 
+  \\ENTIDADE FRACA
+ create table socio(
+          Id_Socio integer,
+          nome varchar(256) not null,
+         cpf varchar(13)not null,
+         Id_Situacao int,
+        CONSTRAINT constraint_socio PRIMARY KEY( Id_Socio),
+        constraint situacao_socio foreign key ( Id_Situacao) references situacao( Id_Situacao)
+	  ); 
